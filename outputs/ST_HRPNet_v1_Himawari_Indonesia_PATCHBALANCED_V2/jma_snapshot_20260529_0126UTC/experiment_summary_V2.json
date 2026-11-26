@@ -1,0 +1,54 @@
+{
+  "paper_title": "ST-HRPNet v1: Spatiotemporal Learning for Himawari-Derived Heavy Rainfall Potential Segmentation over Indonesia",
+  "project_name": "ST_HRPNet_v1_Himawari_Indonesia_PATCHBALANCED_V2",
+  "dataset_tag": "jma_snapshot_20260529_0126UTC",
+  "jma_list_url": "https://www.data.jma.go.jp/mscweb/data/himawari/list_r2w.html",
+  "input_products": [
+    "b13",
+    "b08",
+    "b07",
+    "b03"
+  ],
+  "target_product": "hrp",
+  "download_products": [
+    "b13",
+    "b08",
+    "b07",
+    "b03",
+    "hrp",
+    "snd"
+  ],
+  "sequence_length": 4,
+  "image_size": [
+    256,
+    256
+  ],
+  "patch_size": 128,
+  "n_raw_timestamps_valid": 142,
+  "n_sequences": 139,
+  "train_sequences": 97,
+  "val_sequences": 21,
+  "test_sequences": 21,
+  "n_train_patches": 1800,
+  "n_val_patches": 450,
+  "positive_pixel_ratio_all_full": 0.020628895610570908,
+  "positive_pixel_ratio_train_full": 0.018517248332500458,
+  "positive_pixel_ratio_val_full": 0.0257241390645504,
+  "positive_pixel_ratio_test_full": 0.0252874456346035,
+  "positive_pixel_ratio_train_patch": 0.021072998642921448,
+  "positive_pixel_ratio_val_patch": 0.02783840522170067,
+  "loss_pos_weight": 6.815723822580276,
+  "results_csv": "outputs\\ST_HRPNet_v1_Himawari_Indonesia_PATCHBALANCED_V2\\jma_snapshot_20260529_0126UTC\\paper_ready_model_comparison_results_V2.csv",
+  "manifest_csv": "dataset_himawari_r2w\\manifests\\manifest_jma_snapshot_20260529_0126UTC.csv",
+  "sequence_metadata_csv": "outputs\\ST_HRPNet_v1_Himawari_Indonesia_PATCHBALANCED_V2\\jma_snapshot_20260529_0126UTC\\sequence_metadata.csv",
+  "best_model_summary": {
+    "best_model": "ST_HRPNet_v1_PatchBalanced",
+    "best_iou": 0.6399259561972259,
+    "best_dice_f1": 0.7804327430503395,
+    "best_precision": 0.7966421260525629,
+    "best_recall": 0.7648698350647524,
+    "best_mcc": 0.7750239550496076,
+    "best_pr_auc": 0.8657686953555256,
+    "best_threshold": 0.5
+  }
+}

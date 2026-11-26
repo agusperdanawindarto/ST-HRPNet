@@ -1,0 +1,20 @@
+Component,Description
+data_source,JMA Himawari r2w Southeast Asia large-area imagery
+study_region,Indonesia within the Southeast Asia Himawari scene
+original_domain_coverage,Approximately 90E-165E and 30N-15S
+indonesia_crop,Approximately 95E-141E and 6N-11S
+input_products,"b13, b08, b07, b03"
+target_product,HRP as Himawari-derived heavy rainfall potential pseudo-label
+supporting_product,snd for contextual visualization only
+valid_timestamps,142
+temporal_sequence_length,4
+number_of_sequences,139
+full_image_resolution,256 x 256 pixels
+training_patch_size,128 x 128 pixels
+train_sequences,97
+validation_sequences,21
+test_sequences,21
+overall_positive_pixel_ratio,0.020628895610570908
+train_positive_pixel_ratio,0.018517248332500458
+validation_positive_pixel_ratio,0.0257241390645504
+test_positive_pixel_ratio,0.0252874456346035

@@ -1,0 +1,5 @@
+split,n,positive_pixel_ratio
+train_random_patch,1800,0.0004045274399686605
+val_random_patch,450,0.0008063422283157706
+train_patch_balanced,1800,0.00583675829693675
+val_patch_balanced,450,0.0059935166500508785

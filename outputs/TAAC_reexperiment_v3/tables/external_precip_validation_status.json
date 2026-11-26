@@ -1,0 +1,5 @@
+{
+  "status": "not_available",
+  "message": "No external precipitation mask found. Put precip_test_masks_256.npy in external_precip_validation.",
+  "path_checked": "D:\\RISETKOLABORASI\\Artikel Siap Kirim\\QUANTUM\\Program\\external_precip_validation\\precip_test_masks_256.npy"
+}

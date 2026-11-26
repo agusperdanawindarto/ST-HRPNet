@@ -1,0 +1,3 @@
+split,n,positive_pixel_ratio
+train_patch,1800,0.00583675829693675
+val_patch,450,0.0059935166500508785

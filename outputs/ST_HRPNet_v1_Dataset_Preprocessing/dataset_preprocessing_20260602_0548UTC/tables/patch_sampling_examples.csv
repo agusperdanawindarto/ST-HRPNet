@@ -1,0 +1,3 @@
+patch_type,source_sequence_index_train,top,left,positive_pixel_ratio
+positive_patch,51,24,128,0.0345458984375
+negative_patch,7,62,80,0.0

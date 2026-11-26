@@ -1,0 +1,3 @@
+split,n_patches,positive_pixel_ratio,positive_fraction_setting
+train_mixed,1800,0.005428975448012352,0.5
+validation_mixed,450,0.0067430282942950726,0.5

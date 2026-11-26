@@ -1,0 +1,9 @@
+Step,Stage,Procedure,Purpose
+1,Product completeness check,"Retain timestamps containing B13, B08, B07, B03, HRP, and SND.",Ensure multispectral input and target consistency.
+2,Indonesia-region cropping,Crop the r2w Southeast Asia scene to approximately 95E-141E and 6N-11S.,Focus the experiment on Indonesia and reduce irrelevant spatial area.
+3,Spatial resizing,Resize each cropped image to 256 x 256 pixels.,Standardize input size for sequence construction and model evaluation.
+4,Input-channel preparation,"Convert B13, B08, B07, and B03 to normalized grayscale channels and stack them.",Build the multispectral model input tensor.
+5,HRP pseudo-label extraction,Extract magenta-colored HRP regions using RGB-HSV constraints and light morphology.,Generate binary heavy rainfall potential segmentation masks.
+6,Temporal sequence generation,Combine four consecutive timestamps into one input sequence.,Represent short-term cloud evolution.
+7,Chronological split,"Split sequences into train, validation, and test subsets in temporal order.",Reduce leakage among adjacent satellite scenes.
+8,Patch-balanced sampling,Illustrate positive and negative patch extraction from the training subset.,Document how sparse HRP targets are handled during model training.

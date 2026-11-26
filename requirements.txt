@@ -1,0 +1,11 @@
+tensorflow
+numpy
+pandas
+matplotlib
+scikit-learn
+opencv-python
+pillow
+tqdm
+beautifulsoup4
+requests
+openpyxl

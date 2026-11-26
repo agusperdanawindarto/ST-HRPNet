@@ -1,0 +1,4 @@
+split,n,positive_pixel_ratio
+train,97,0.018517248332500458
+validation,21,0.0257241390645504
+test,21,0.0252874456346035

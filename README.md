@@ -427,3 +427,7 @@ This repository is intended for academic and research purposes. Please check the
 ## Disclaimer
 
 The HRP target used in this project is derived from satellite-based Himawari products and should be treated as a pseudo-label for heavy rainfall potential segmentation. The model output is not a direct rainfall measurement and should not be used as an operational warning system without further independent validation using ground-based, radar-based, or precipitation retrieval datasets.
+
+## Experiment archive (2026-11-27)
+
+See [experiment archive and limitations](EXPERIMENT_ARCHIVE.md), [notebooks](notebooks/), [final ablation CSV](outputs/TAAC_reexperiment_v3/tables/FINAL_clean_ablation_with_mixedpatch.csv), [figures](outputs/TAAC_reexperiment_v3/figures/), [model weights](outputs/TAAC_reexperiment_v3/models/) and [split metadata](taac_checkpoints_v3/). Historical author/submission metadata requires confirmation. The repository is an archive, not a claim of independent rainfall validation.
