@@ -1,0 +1,12 @@
+{
+  "replicas": 2,
+  "batch": 8,
+  "gpus": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')",
+    "PhysicalDevice(name='/physical_device:GPU:1', device_type='GPU')"
+  ],
+  "tf": "2.21.0",
+  "loss": [
+    0.8190417289733887
+  ]
+}

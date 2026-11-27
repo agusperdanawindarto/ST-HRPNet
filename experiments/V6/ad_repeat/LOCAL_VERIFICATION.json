@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "split consistency, masks, recomputed validation threshold and test metrics, finite histories, checkpoint presence; not independent meteorological validation",
+  "runs": {
+    "A_seed123": {
+      "threshold": 0.54,
+      "valid_candidates": 2,
+      "epochs": 12,
+      "AP": 0.3094661567135831
+    },
+    "A_seed2025": {
+      "threshold": 0.51,
+      "valid_candidates": 1,
+      "epochs": 11,
+      "AP": 0.20558999256313013
+    },
+    "D_seed123": {
+      "threshold": 0.74,
+      "valid_candidates": 61,
+      "epochs": 15,
+      "AP": 0.517812029454325
+    },
+    "D_seed2025": {
+      "threshold": 0.6,
+      "valid_candidates": 61,
+      "epochs": 15,
+      "AP": 0.4960758293702756
+    }
+  }
+}
