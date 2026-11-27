@@ -1,0 +1,11 @@
+{
+  "cuda_available": true,
+  "device_count": 2,
+  "devices": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0",
+  "finite_matmul": true
+}

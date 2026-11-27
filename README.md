@@ -1,12 +1,16 @@
 # ST-HRPNet
 
-**Himawari-derived heavy rainfall potential segmentation over Indonesia using an imbalance-aware spatiotemporal deep learning framework**
+**Mixed-Sampling and False-Positive-Aware Spatiotemporal Learning for Himawari-Derived Heavy Rainfall Potential Segmentation over Indonesia**
 
 ST-HRPNet is a spatiotemporal deep learning framework for segmenting **Himawari-derived Heavy Rainfall Potential (HRP)** over Indonesia. The framework uses multispectral temporal sequences from Himawari r2w imagery and is designed for sparse HRP patterns, where positive pixels are rare compared with the surrounding background.
 
-The final version of this repository focuses on **mixed imbalance-aware patch learning**, combining random patches and positive-centered patches with false-positive-aware optimization.
+The historical V5 experiment archive focuses on **mixed imbalance-aware patch learning**, combining random patches and positive-centered patches with false-positive-aware optimization.
 
 ---
+
+## Current V6 validation (2026-11-27)
+
+See [V6 GPU pilot and verified results](experiments/V6/README.md). The 91/18/18 split excludes shared processed frames and irregular temporal windows; event independence remains unverified. Two seed-42 runs are complete; the remaining runs are in progress or pending. Historical V5 results below use a different split and must not be combined with V6. Target journal: Journal of the Indian Society of Remote Sensing (working target, not acceptance).
 
 ## Repository
 

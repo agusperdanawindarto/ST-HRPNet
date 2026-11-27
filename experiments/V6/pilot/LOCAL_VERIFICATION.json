@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "processed-frame identity, ten-minute continuity, test masks, threshold selection, test metrics, finite histories; not independent events or rainfall validation",
+  "splits": {
+    "train": 91,
+    "val": 18,
+    "test": 18
+  },
+  "results": {
+    "A": {
+      "selected_threshold": 0.82,
+      "validation_candidates": 91,
+      "valid_candidates": 23,
+      "average_precision": 0.4061953600534282,
+      "epochs": 40
+    },
+    "D": {
+      "selected_threshold": 0.61,
+      "validation_candidates": 91,
+      "valid_candidates": 72,
+      "average_precision": 0.30436188036948153,
+      "epochs": 26
+    }
+  }
+}
