@@ -105,3 +105,7 @@ For citation, reference this repository and the specific commit or experiment ve
 
 ## Complete V6 benchmark
 See [21-run evaluation and limitations](experiments/V6/README.md).
+
+## Manuscript figures
+
+[Figure archive (Fig. 1–9), captions, supplementary full-image predictions and per-scene audit](paper_figures/README.md). The 21-run experimental benchmark remains unchanged.
