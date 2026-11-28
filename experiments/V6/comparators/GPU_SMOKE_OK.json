@@ -1,0 +1,25 @@
+{
+  "replicas": 2,
+  "batch": 8,
+  "gpus": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')",
+    "PhysicalDevice(name='/physical_device:GPU:1', device_type='GPU')"
+  ],
+  "tf": "2.21.0",
+  "models": {
+    "B1": {
+      "loss": [
+        1.0488379001617432
+      ],
+      "parameters": 489553,
+      "full_image_inference": true
+    },
+    "B2": {
+      "loss": [
+        1.05854070186615
+      ],
+      "parameters": 1075921,
+      "full_image_inference": true
+    }
+  }
+}

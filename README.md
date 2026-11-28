@@ -101,3 +101,7 @@ Clone the repository and install the dependencies in [requirements.txt](requirem
 The HRP target is a satellite-product pseudo-label. V6 removes verified processed-frame overlap but does not establish independent weather events, direct surface rainfall skill, or operational warning performance. Full ablation and independent architecture comparisons remain incomplete. AP is the scikit-learn non-interpolated metric, not interchangeable with historical trapezoidal PR-AUC. V5 and V6 differ in split and training protocol, so their score differences are not attributable solely to overlap removal.
 
 For citation, reference this repository and the specific commit or experiment version. Manuscript author order and bibliographic metadata should follow the approved manuscript; historical submission metadata is not current. See the repository license before reuse.
+
+
+## Complete V6 benchmark
+See [21-run evaluation and limitations](experiments/V6/README.md).

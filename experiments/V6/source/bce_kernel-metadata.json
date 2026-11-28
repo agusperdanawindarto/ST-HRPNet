@@ -1,0 +1,21 @@
+{
+  "id": "niluhwiwiksrirahayu/st-hrpnet-v6-gpu-bce-ablation",
+  "id_no": 147870690,
+  "title": "ST HRPNet V6 GPU BCE ablation",
+  "code_file": "st-hrpnet-v6-gpu-bce-ablation.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [
+    "niluhwiwiksrirahayu/st-hrpnet-v6-private-sequences"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}

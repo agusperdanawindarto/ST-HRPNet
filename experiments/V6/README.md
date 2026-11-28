@@ -1,62 +1,31 @@
-# ST-HRPNet V6 — verified frame-disjoint GPU evaluation
+# ST-HRPNet V6: complete 21-run evaluation
 
-Updated 27 November 2026. Working manuscript title: **Mixed-Sampling and False-Positive-Aware Spatiotemporal Learning for Himawari-Derived Heavy Rainfall Potential Segmentation over Indonesia**.
+Updated 2026-11-28. This archive reports a retrospective, single-acquisition case study of Himawari-derived HRP pseudo-label segmentation. It is not operational rainfall forecasting or independent meteorological validation. V6 removes shared processed input frames between partitions and discontinuous ten-minute windows (91/18/18 retained sequences), but does not establish independent events or dates.
 
-## Protocol and provenance
+## Protocol
+All seven configurations use seeds 42, 123, 2025, 1800 training patches, 448 common validation patches, GPU mixed precision, batch 8, Adam 1e-4, up to 40 epochs, early stopping patience 10 and validation-only threshold selection. A--E use the same ST-HRPNet architecture. B/C share identical 65:35 balanced manifests; D/E share identical 50:50 mixed manifests. B1 is an adapted single-frame 2D U-Net; B2 is an adapted Conv3D encoder with temporal mean and 2D decoder. B1/B2 use the same sampling and FP-aware objective as D, not exact reproductions of published architectures. Neither B1 nor B2 isolates temporal context alone because the architectures also differ.
 
-V6 retains 91/18/18 sequences from the historical 97/21/21 split. Six irregular training windows and three overlapping windows at each adjacent split boundary were excluded. Processed-frame SHA-256 and time-code checks confirm no shared frames across partitions. The test set includes 1,179,648 pixels, of which 5,111 are positive HRP pseudo-label pixels. Independent event/date generalization and independent precipitation validation are not established.
+## Complete results
+All 21 runs passed local numerical recomputation from prediction arrays, threshold audit and checkpoint/history checks. Comparator patch manifests match D. This is technical validation, not external validation or proof of statistical significance.
 
-A uses random sampling with WBCE + Dice; D uses 50:50 random/positive-centered sampling with FP-aware loss. Both share 922,581 parameters, 1,800 training patches, 448 common validation patches, batch 8, Adam 1e-4, maximum 40 epochs, patience 10, and per-example loss. Seed-specific patch RNG uses seed + 101; common validation seed 244. Executed on Kaggle two-GPU Tesla T4 runtime, mixed float16 with float32 recurrence and output. Validation checkpoint selection uses foreground IoU at 0.50. Decision thresholds are selected from 91 validation candidates (0.05 to 0.95). Test evaluation uses frozen checkpoints and both selected and fixed 0.50 thresholds.
+| Model | Selected IoU mean +/- sample SD | Fixed IoU | AP mean |
+|---|---:|---:|---:|
+| A | 0.2218 +/- 0.0520 | 0.2413 | 0.3071 |
+| B | 0.3218 +/- 0.0630 | 0.3553 | 0.3984 |
+| C | 0.3197 +/- 0.0536 | 0.3540 | 0.4080 |
+| D | 0.3517 +/- 0.0615 | 0.3734 | 0.4394 |
+| E | 0.3513 +/- 0.0608 | 0.3535 | 0.4505 |
+| B1 | 0.4228 +/- 0.0801 | 0.4349 | 0.5770 |
+| B2 | 0.3423 +/- 0.0417 | 0.3452 | 0.4097 |
 
-## A/D multi-seed results
+**Interpretation.** D improves overlap over A and C on average, but D/E differ by only 0.00034 in mean selected IoU; E has higher AP. B1 outperforms D on mean selected and fixed IoU, Dice and AP and has fewer parameters. The data do not establish a benefit of temporal recurrence or FP-aware optimization over simple alternatives. Three seeds describe training variability, not independent events. AP is non-interpolated average precision, not trapezoidal PR-AUC. The historical V1--V5 experiments are not pooled with V6.
 
-### Validation-selected thresholds
+## Evidence
+- [All run-level metrics](all_21_runs.csv); [mean and sample SD](all_21_mean_sd.csv); [paired seed IoU differences](paired_seed_iou_differences.csv)
+- [Training efficiency](training_efficiency.csv): actual fit wall time, epochs, parameters; no inference latency claim.
+- [Pilot](pilot/), [A/D repeats](ad_repeat/), [B/C/E](bce/), [B1/B2](comparators/), [source](source/).
+- Each batch includes local verification, validation sweeps, weights, per-scene metrics, training histories, patch manifests and prediction probabilities. Raw input tensors and target masks remain private; dataset access requires authorization.
+- [SHA-256 manifest](SHA256_manifest.csv).
 
-| Metric | A: random | D: proposed |
-|---|---:|---:|
-| IoU | 0.2218 ± 0.0520 | 0.3517 ± 0.0615 |
-| Dice/F1 | 0.3610 ± 0.0714 | 0.5183 ± 0.0686 |
-| Precision | 0.3473 ± 0.0890 | 0.5429 ± 0.0780 |
-| Recall | 0.3895 ± 0.1087 | 0.5058 ± 0.1140 |
-| MCC | 0.3617 ± 0.0746 | 0.5193 ± 0.0701 |
-| Average precision (AP) | 0.3071 ± 0.1003 | 0.4394 ± 0.1175 |
-
-### Fixed threshold 0.50
-
-| Metric | A: random | D: proposed |
-|---|---:|---:|
-| IoU | 0.2413 ± 0.0381 | 0.3734 ± 0.0725 |
-| Dice/F1 | 0.3878 ± 0.0504 | 0.5410 ± 0.0794 |
-| Precision | 0.2945 ± 0.0621 | 0.5206 ± 0.0645 |
-| Recall | 0.6109 ± 0.1846 | 0.5696 ± 0.1217 |
-| MCC | 0.4150 ± 0.0633 | 0.5410 ± 0.0810 |
-| Average precision (AP) | 0.3071 ± 0.1003 | 0.4394 ± 0.1175 |
-
-### Seed-level results (validation-selected)
-
-| Seed | A threshold | D threshold | A IoU | D IoU | A AP | D AP |
-|---|---:|---:|---:|---:|---:|---:|
-| 42 | 0.82 | 0.61 | 0.2443 | 0.2835 | 0.4062 | 0.3044 |
-| 123 | 0.54 | 0.74 | 0.2587 | 0.3687 | 0.3095 | 0.5178 |
-| 2025 | 0.51 | 0.60 | 0.1623 | 0.4028 | 0.2056 | 0.4961 |
-
-D improves IoU at both operating points for all three seeds; AP is lower for D at seed 42, and mean recall at 0.50 is lower. Report mean ± sample SD descriptively; three seeds and correlated temporal windows are insufficient for strong significance or generalization claims. AP is not trapezoidal PR-AUC.
-
-## Artifact index
-
-| Artifact | Seed 42 | Seeds 123 and 2025 |
-|---|---|---|
-| Metrics | [CSV](pilot/pilot_metrics.csv) | [CSV](ad_repeat/pilot_metrics.csv) |
-| Split audit | [JSON](pilot/split_audit.json) | [JSON](ad_repeat/split_audit.json) |
-| Local recomputation | [JSON](pilot/LOCAL_VERIFICATION.json) | [JSON](ad_repeat/LOCAL_VERIFICATION.json) |
-| Completion | [JSON](pilot/PILOT_COMPLETE.json) | [JSON](ad_repeat/PILOT_COMPLETE.json) |
-| Qualitative comparison | [PNG](pilot/comparison.png) | [PNG](ad_repeat/comparison.png) |
-| Executed source | [Python](source/st-hrpnet-v6-gpu-pilot.py) | [Python](source/ad_repeat_st-hrpnet-v6-gpu-ad-repeat.py) |
-
-Combined outputs: [per-seed metrics](ad_all_seeds.csv), [mean and SD](ad_mean_sd.csv). Per-run directories contain best weights, training histories, per-scene CSVs, patch manifests, validation sweeps and probability arrays. The local audit recomputed metrics from predictions and verified validation-selected thresholds and split consistency. Original input tensors and masks are private.
-
-## Remaining work
-
-B/C/E (nine runs) are submitted and active, not yet verified. B/C share balanced sampling (65% positive-centered with minimum 16 positive pixels and jitter; 35% low-positive patches, maximum ratio 0.0005, with logged fallbacks); E matches D's 50:50 sampler without FP-aware loss. B1/B2 (six planned runs) remain pending. No independent meteorological validation has been completed. V1–V5 remain historical and are not pooled with these results.
-
-Kaggle notebooks: [pilot](https://www.kaggle.com/code/niluhwiwiksrirahayu/st-hrpnet-v6-gpu-pilot), [repeat](https://www.kaggle.com/code/niluhwiwiksrirahayu/st-hrpnet-v6-gpu-ad-repeat), [BCE ablation](https://www.kaggle.com/code/niluhwiwiksrirahayu/st-hrpnet-v6-gpu-bce-ablation). Access requires dataset/kernel authorization.
+## Kaggle
+[pilot](https://www.kaggle.com/code/niluhwiwiksrirahayu/st-hrpnet-v6-gpu-pilot), [A/D repeat](https://www.kaggle.com/code/niluhwiwiksrirahayu/st-hrpnet-v6-gpu-ad-repeat), [B/C/E](https://www.kaggle.com/code/niluhwiwiksrirahayu/st-hrpnet-v6-gpu-bce-ablation), [comparators](https://www.kaggle.com/code/niluhwiwiksrirahayu/st-hrpnet-v6-gpu-comparators).
